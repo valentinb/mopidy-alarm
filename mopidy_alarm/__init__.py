@@ -36,5 +36,5 @@ class Extension(ext.Extension):
         return schema
 
     def setup(self, registry):
-        from .frontend import FoobarFrontend
-        registry.add('frontend', FoobarFrontend)
+        from .frontend import AlarmFrontend
+        registry.add('frontend', AlarmFrontend)
