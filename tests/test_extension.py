@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 import unittest
+import mock
+import time
 
 from mopidy_alarm import Extension, frontend as frontend_lib
 
@@ -23,5 +25,3 @@ class ExtensionTest(unittest.TestCase):
         # TODO Test the content of your config schema
         #self.assertIn('username', schema)
         #self.assertIn('password', schema)
-
-    # TODO Write more tests
