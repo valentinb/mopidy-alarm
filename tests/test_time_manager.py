@@ -12,12 +12,26 @@ from testfixtures.tests.sample1 import str_now_1
 
 class TimeTest(unittest.TestCase):
 
-	def test_time_manager_update(self):
+	def test_time_manager_init(self):
+		#setup
+		time_printer = mock.Mock()
+		scheduler = mock.Mock()
+		scheduler.add_job = mock.MagicMock()
+		scheduler.start = mock.MagicMock()
+		#exercize
+		sut = time_manager.TimeManager(time_printer, scheduler)
+		#check
+		scheduler.add_job.assert_called_with(sut.update_time, 'interval', minutes=0.01)
+		scheduler.start.assert_called_with()
+
+
+	def test_time_manager_update_time(self):
 		#setup
 		time_printer = mock.Mock()
 		time_printer.print_time = mock.MagicMock()
-		sut = time_manager.TimeManager(time_printer)
+		scheduler = mock.Mock()
 		time.localtime = mock.MagicMock(return_value=time.strptime("10 45", "%H %M"))
+		sut = time_manager.TimeManager(time_printer, scheduler)
 		#exercize
 		sut.update_time()
 		#check
