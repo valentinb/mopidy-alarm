@@ -10,4 +10,5 @@ class AlarmFrontend(pykka.ThreadingActor, core.CoreListener):
 		super(AlarmFrontend, self).__init__()
 		printer = time_printer.TimePrinter()
 		scheduler = BackgroundScheduler()
+		print(core.uri_schemes(1))
 		self.time_manager = time_manager.TimeManager(printer, scheduler)
