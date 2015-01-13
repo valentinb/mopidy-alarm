@@ -17,13 +17,10 @@ class TimeTest(unittest.TestCase):
 		time_printer = mock.Mock()
 		scheduler = mock.Mock()
 		scheduler.add_job = mock.MagicMock()
-		scheduler.start = mock.MagicMock()
 		#exercize
 		sut = time_manager.TimeManager(time_printer, scheduler)
 		#check
 		scheduler.add_job.assert_called_with(sut.update_time, 'interval', minutes=0.01)
-		scheduler.start.assert_called_with()
-
 
 	def test_time_manager_update_time(self):
 		#setup
